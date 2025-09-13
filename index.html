@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nathaël Da Costa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Nunito", "Trebuchet MS", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .neural-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .curve-path {
+            fill: none;
+            stroke: rgba(99, 102, 241, 0.3);
+            stroke-width: 1;
+            opacity: 0.7;
+        }
+
+        .curve-path-2 {
+            fill: none;
+            stroke: rgba(147, 51, 234, 0.25);
+            stroke-width: 1.5;
+            opacity: 0.6;
+        }
+
+        .curve-path-3 {
+            fill: none;
+            stroke: rgba(59, 130, 246, 0.2);
+            stroke-width: 0.8;
+            opacity: 0.8;
+        }
+
+        .node {
+            fill: rgba(99, 102, 241, 0.4);
+            opacity: 0.7;
+        }
+
+        .node-2 {
+            fill: rgba(147, 51, 234, 0.3);
+            opacity: 0.6;
+        }
+
+        .connection {
+            stroke: rgba(79, 70, 229, 0.15);
+            stroke-width: 0.5;
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .content-left {
+            flex: 2;
+        }
+
+        .profile-image {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .profile-image img,
+        .profile-placeholder {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 8px;
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+            font-size: 14px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .research-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #dddddd;
+            margin-bottom: 40px;
+        }
+
+        .career-trajectory {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .career-item {
+            padding: 15px;
+            border-left: 2px solid #666;
+            color: #cccccc;
+        }
+
+        .links-section {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .link-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: none;
+            border: 1px solid #555;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.25s ease;
+        }
+
+        .link-button:hover {
+            background: #fff;
+            color: #000;
+            transform: scale(1.05) translateY(-2px);
+            border-color: #fff;
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-image {
+                order: -1;
+                align-self: center;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg class="neural-background" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+        <!-- Geometric curves -->
+        <path class="curve-path" d="M-100,400 Q200,200 400,400 T800,300 Q1000,250 1300,400"/>
+        <path class="curve-path-2" d="M-50,600 Q300,350 600,500 T1100,450 Q1250,400 1400,500"/>
+        <path class="curve-path-3" d="M-200,100 Q150,300 350,150 T750,200 Q950,150 1200,100"/>
+        <path class="curve-path" d="M200,0 Q400,100 600,0 T1000,50 Q1200,25 1400,0"/>
+        <path class="curve-path-3" d="M0,800 Q250,700 500,750 T900,700 Q1100,680 1300,700"/>
+        
+        <!-- Neural network nodes -->
+        <circle class="node" cx="150" cy="200" r="3"/>
+        <circle class="node-2" cx="250" cy="350" r="2"/>
+        <circle class="node" cx="450" cy="180" r="2.5"/>
+        <circle class="node-2" cx="650" cy="420" r="3"/>
+        <circle class="node" cx="850" cy="150" r="2"/>
+        <circle class="node" cx="950" cy="380" r="2.5"/>
+        <circle class="node-2" cx="350" cy="600" r="2"/>
+        <circle class="node" cx="750" cy="650" r="3"/>
+        <circle class="node-2" cx="550" cy="250" r="2"/>
+        <circle class="node" cx="800" cy="500" r="2.5"/>
+        
+        <!-- Neural connections -->
+        <line class="connection" x1="150" y1="200" x2="250" y2="350"/>
+        <line class="connection" x1="250" y1="350" x2="450" y2="180"/>
+        <line class="connection" x1="450" y1="180" x2="650" y2="420"/>
+        <line class="connection" x1="650" y1="420" x2="850" y2="150"/>
+        <line class="connection" x1="850" y1="150" x2="950" y2="380"/>
+        <line class="connection" x1="350" y1="600" x2="750" y2="650"/>
+        <line class="connection" x1="550" y1="250" x2="800" y2="500"/>
+        <line class="connection" x1="250" y1="350" x2="550" y2="250"/>
+        <line class="connection" x1="650" y1="420" x2="800" y2="500"/>
+        <line class="connection" x1="450" y1="180" x2="550" y2="250"/>
+        
+        <!-- Additional geometric elements -->
+        <path class="curve-path-2" d="M1200,300 Q1000,400 800,350 Q600,300 400,400 Q200,500 0,400"/>
+        <path class="curve-path-3" d="M1400,600 Q1100,500 800,550 Q500,600 200,550 Q100,525 0,550"/>
+    </svg>
+
+    <div class="container">
+        <div class="header">
+            <div class="content-left">
+                <h1>Nathaël Da Costa</h1>
+                
+                <div class="research-description">
+                    <div class="research-placeholder">
+                        I am a PhD candidate in Philipp Hennig's group at the University of Tübingen and the International Max Planck Research School for Intelligent Systems. I am interested in mathematically rich problems in machine learning. In particular, my research focuses on probabilistic machine learning models, such as Gaussian processes and Bayesian neural networks. My goal is to improve our understanding and design of such systems while guided by mathematical principles. Notably, my work relies on tools from differential geometry and functional analysis.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-image">
+                <div class="profile-placeholder">
+                    [Your Photo Here]
+                </div>
+            </div>
+        </div>
+
+        <div class="career-trajectory">
+            <div class="career-item">2023-Ongoing: PhD in Computer Science at the University of Tübingen</div>
+            <div class="career-item">2023: Research Associate in Applied Mathematics at Nanyang Technological University Singapore</div>
+            <div class="career-item">2021-2022: MMath in Pure Mathematics at the University of Cambridge
+(Part III of the Mathematical Tripos)</div>
+            <div class="career-item">2018-2021: BA in Mathematics at the University of Cambridge
+(Mathematical Tripos)</div>
+        </div>
+
+        <div class="links-section">
+            <a href="#" class="link-button">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                </svg>
+                CV
+            </a>
+            <a href="https://scholar.google.com/citations?user=9VSXhUIAAAAJ" class="link-button">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z" />
+                </svg>
+                Google Scholar
+            </a>
+            <a href="mailto:nathael.da-costa@uni-tuebingen.de" class="link-button">
+                <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
+                </svg>
+                Email
+            </a>
+        </div>
+    </div>
+</body>
+</html>
